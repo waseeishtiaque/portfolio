@@ -179,7 +179,9 @@
     const aboutB = blockEl('About');
     aboutB.appendChild(field('Kicker', state.about.kicker, v => state.about.kicker = v));
     aboutB.appendChild(field('Title', state.about.title, v => state.about.title = v));
-    aboutB.appendChild(field('Paragraphs (use **text** for bold, one paragraph per box)', '', () => {}));
+    const parasHint = document.createElement('div'); parasHint.className = 'hint'; parasHint.style.marginTop = '14px';
+    parasHint.textContent = 'Paragraphs (use **text** for bold, one paragraph per box)';
+    aboutB.appendChild(parasHint);
     state.about.paragraphs.forEach((p, i) => {
       aboutB.appendChild(field('Paragraph ' + (i + 1), p, v => state.about.paragraphs[i] = v, true));
     });
