@@ -309,70 +309,19 @@
 
   <!-- HERO -->
   <section class="hero">
-    <div class="container">
-      <div class="hero-avatar reveal in">IW</div>
-      <div class="kicker reveal in">Open to analyst &amp; finance roles</div>
-      <h1 class="reveal in">Turning raw data into<br><span class="accent-word">financial clarity.</span></h1>
-      <p class="hero-sub reveal in">Final-year Digital Business &amp; Innovation student at Tokyo International University. I use SQL and Python to dig into financial data — and bring the same discipline to leading teams under pressure.</p>
-      <div class="hero-actions reveal in">
-        <a href="mailto:d12281wasee@gmail.com" class="btn btn-primary">Get in touch →</a>
-        <a href="Ishtiaque_Rahman_Wasee_Resume.pdf" class="btn btn-outline" download>Download résumé</a>
-        <a href="https://linkedin.com/in/ishtiaque-wasee-1401b7276" target="_blank" rel="noopener" class="btn btn-outline">LinkedIn ↗</a>
-      </div>
-      <div class="hero-meta reveal in">
-        <span>📍 Saitama, Japan</span>
-        <span>✉️ d12281wasee@gmail.com</span>
-        <span>📱 080-7449-1228</span>
-      </div>
-    </div>
+    <div class="container" id="heroContainer"></div>
   </section>
 
   <!-- STATS -->
   <section class="tight">
     <div class="container">
-      <div class="stats-strip reveal">
-        <div class="stat">
-          <div class="stat-num" data-count="42.40" data-suffix="%">0%</div>
-          <div class="stat-label">Best 2024 return identified (JPM) in portfolio analysis</div>
-        </div>
-        <div class="stat">
-          <div class="stat-num" data-count="20" data-suffix="%">0%</div>
-          <div class="stat-label">Estimated reduction in stockouts from demand forecasting</div>
-        </div>
-        <div class="stat">
-          <div class="stat-num" data-count="150" data-suffix="">0</div>
-          <div class="stat-label">Daily orders tracked &amp; analyzed at Looms Avenue</div>
-        </div>
-        <div class="stat">
-          <div class="stat-num" data-count="80" data-suffix="">0</div>
-          <div class="stat-label">Debaters coached and mentored since 2024</div>
-        </div>
-      </div>
+      <div class="stats-strip reveal" id="statsStrip"></div>
     </div>
   </section>
 
   <!-- ABOUT -->
   <section id="about">
-    <div class="container">
-      <div class="kicker reveal">Profile</div>
-      <h2 class="section-title reveal">Analytical by training, a communicator by practice.</h2>
-      <div class="about-grid">
-        <div class="about-text reveal">
-          <p>I'm a final-year <strong>Digital Business &amp; Innovation</strong> student at Tokyo International University, building toward a career in <strong>analyst, finance, and fintech</strong> roles. My work sits at the intersection of numbers and narrative: I use <strong>SQL and Python</strong> to pull structure out of messy financial data, then translate what I find into decisions people can act on.</p>
-          <p>That habit of translating complexity into something clear didn't start in a classroom — it comes from two years coaching competitive debate, where the job is to take a dense argument and make it land in three minutes. I bring the same rigor and clarity to spreadsheets and SQL queries as I do to a debate brief.</p>
-          <p>Currently based in Saitama, Japan, holding a <strong>3.51 CGPA</strong> in my senior year, and conversational in Japanese (JLPT N3) alongside native fluency in Bangla and English.</p>
-        </div>
-        <div class="focus-card reveal">
-          <h3>Quick Facts</h3>
-          <div class="focus-item"><span>Standing</span><span>Senior / Final-year</span></div>
-          <div class="focus-item"><span>CGPA</span><span>3.51</span></div>
-          <div class="focus-item"><span>Graduating</span><span>Aug 2027</span></div>
-          <div class="focus-item"><span>Base</span><span>Saitama, Japan</span></div>
-          <div class="focus-item"><span>Languages</span><span>4</span></div>
-          <div class="focus-item"><span>Focus</span><span>Analyst / Finance</span></div>
-        </div>
-      </div>
-    </div>
+    <div class="container" id="aboutContainer"></div>
   </section>
 
   <!-- EXPERIENCE -->
@@ -381,31 +330,7 @@
       <div class="kicker reveal">Experience</div>
       <h2 class="section-title reveal">Where I've applied it.</h2>
       <p class="section-desc reveal">Roles that put analytical thinking and leadership to work under real constraints.</p>
-
-      <div class="exp-item reveal">
-        <div class="exp-date">Mar 2025 – Aug 2025</div>
-        <div>
-          <div class="exp-role">Financial Analyst</div>
-          <div class="exp-org">Looms Avenue</div>
-          <ul>
-            <li>Tracked and managed 100–150 daily orders for an early-stage e-commerce startup, monitoring fulfillment status and flagging process bottlenecks to leadership.</li>
-            <li>Analyzed sales and order data to identify a <strong style="color:var(--text)">~15% month-over-month growth trend</strong>, directly informing pricing and inventory decisions.</li>
-            <li>Built demand forecasts from order and growth data, helping reduce stockouts by an estimated <strong style="color:var(--text)">20%</strong> during peak periods.</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="exp-item reveal">
-        <div class="exp-date">2024 – Present</div>
-        <div>
-          <div class="exp-role">Debate Coach</div>
-          <div class="exp-org">Habiganj Debating Society</div>
-          <ul>
-            <li>Coach and mentor a roster of <strong style="color:var(--text)">80 debaters</strong>, designing training curricula on argumentation, rebuttal, and public speaking.</li>
-            <li>Run regular practice tournaments and structured feedback sessions to prepare debaters for competitive circuits.</li>
-          </ul>
-        </div>
-      </div>
+      <div id="experienceList"></div>
     </div>
   </section>
 
@@ -415,47 +340,7 @@
       <div class="kicker reveal">Projects</div>
       <h2 class="section-title reveal">Independent analysis work.</h2>
       <p class="section-desc reveal">Self-directed projects applying financial and data analysis outside the classroom.</p>
-
-      <div class="project-grid">
-        <div class="project-card reveal">
-          <span class="project-tag">Portfolio Analysis</span>
-          <h3>Stock Price Tracker</h3>
-          <div class="project-meta-row">
-            <div>Approach<strong>Data pipeline + EDA</strong></div>
-            <div>Coverage<strong>JPM · MSFT · AAPL</strong></div>
-          </div>
-          <ul>
-            <li>Built an end-to-end stock analysis pipeline in Python (pandas, matplotlib, yfinance) — data collection, cleaning, exploratory analysis, and visualization for a multi-stock portfolio.</li>
-            <li>Computed daily returns, 30-day rolling volatility, and cross-stock correlation to evaluate risk and diversification benefits.</li>
-            <li>Result: JPM delivered the best 2024 total return (42.40%), MSFT showed the lowest volatility, and low JPM–AAPL correlation supported the case for diversification.</li>
-          </ul>
-          <div class="tech-row">
-            <span class="tech-pill">Python</span>
-            <span class="tech-pill">pandas</span>
-            <span class="tech-pill">matplotlib</span>
-            <span class="tech-pill">yfinance</span>
-          </div>
-        </div>
-
-        <div class="project-card reveal">
-          <span class="project-tag">SQL Analytics</span>
-          <h3>Bank Transaction Analyzer</h3>
-          <div class="project-meta-row">
-            <div>Approach<strong>SQLite + query design</strong></div>
-            <div>Focus<strong>Spending patterns</strong></div>
-          </div>
-          <ul>
-            <li>Designed and queried a SQLite database of personal bank transactions to surface spending patterns, monthly trends, and top expense categories.</li>
-            <li>Wrote SQL queries — aggregate functions, GROUP BY, strftime date parsing — to rank top merchants by volume and compute average transaction size by category.</li>
-            <li>Flagged the largest single transactions to support anomaly review and budgeting decisions.</li>
-          </ul>
-          <div class="tech-row">
-            <span class="tech-pill">SQL</span>
-            <span class="tech-pill">SQLite</span>
-            <span class="tech-pill">DB Browser</span>
-          </div>
-        </div>
-      </div>
+      <div class="project-grid" id="projectGrid"></div>
     </div>
   </section>
 
@@ -464,46 +349,7 @@
     <div class="container">
       <div class="kicker reveal">Skills</div>
       <h2 class="section-title reveal">Tools I reach for.</h2>
-      <div class="skills-wrap">
-        <div class="skill-card reveal">
-          <h3>Technical</h3>
-          <div class="bar-row">
-            <div class="bar-label"><span>SQL</span><span>Query design, aggregation, joins</span></div>
-            <div class="bar-track"><div class="bar-fill" data-width="90"></div></div>
-          </div>
-          <div class="bar-row">
-            <div class="bar-label"><span>Python (pandas, matplotlib)</span><span>Data analysis &amp; viz</span></div>
-            <div class="bar-track"><div class="bar-fill" data-width="85"></div></div>
-          </div>
-          <div class="bar-row">
-            <div class="bar-label"><span>Excel &amp; Microsoft Office</span><span>Modeling &amp; reporting</span></div>
-            <div class="bar-track"><div class="bar-fill" data-width="88"></div></div>
-          </div>
-          <div class="bar-row">
-            <div class="bar-label"><span>SQLite / DB Browser</span><span>Database design</span></div>
-            <div class="bar-track"><div class="bar-fill" data-width="80"></div></div>
-          </div>
-        </div>
-        <div class="skill-card reveal">
-          <h3>Interpersonal</h3>
-          <div class="bar-row">
-            <div class="bar-label"><span>Public Speaking</span><span>Competitive-tested</span></div>
-            <div class="bar-track"><div class="bar-fill" data-width="95"></div></div>
-          </div>
-          <div class="bar-row">
-            <div class="bar-label"><span>Debate &amp; Argumentation</span><span>National champion</span></div>
-            <div class="bar-track"><div class="bar-fill" data-width="95"></div></div>
-          </div>
-          <div class="bar-row">
-            <div class="bar-label"><span>Coaching &amp; Mentorship</span><span>80 debaters, 2+ yrs</span></div>
-            <div class="bar-track"><div class="bar-fill" data-width="90"></div></div>
-          </div>
-          <div class="bar-row">
-            <div class="bar-label"><span>Leadership</span><span>Team &amp; org level</span></div>
-            <div class="bar-track"><div class="bar-fill" data-width="85"></div></div>
-          </div>
-        </div>
-      </div>
+      <div class="skills-wrap" id="skillsWrap"></div>
     </div>
   </section>
 
@@ -512,24 +358,7 @@
     <div class="container">
       <div class="kicker reveal">Recognition</div>
       <h2 class="section-title reveal">Achievements &amp; extracurriculars.</h2>
-      <div class="achieve-grid">
-        <div class="achieve-item reveal">
-          <div class="achieve-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 15a6 6 0 100-12 6 6 0 000 12z"/><path d="M8.5 13.5L7 22l5-3 5 3-1.5-8.5"/></svg></div>
-          <div class="achieve-text">National Debate Champion<small>High School Championship, 2022</small></div>
-        </div>
-        <div class="achieve-item reveal">
-          <div class="achieve-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg></div>
-          <div class="achieve-text">Debate Coach, Habiganj Debating Society<small>Mentoring 80 active debaters</small></div>
-        </div>
-        <div class="achieve-item reveal">
-          <div class="achieve-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="M18.7 8l-5.1 5.2-2.8-2.7L7 14.3"/></svg></div>
-          <div class="achieve-text">HSBC Business Case Competition<small>Semi-Finalist, 2026</small></div>
-        </div>
-        <div class="achieve-item reveal">
-          <div class="achieve-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3 7h7l-5.5 4.5L18.5 21 12 16.5 5.5 21 7.5 13.5 2 9h7z"/></svg></div>
-          <div class="achieve-text">Hult Prize — Vice President<small>Tokyo International University, 2025–2026</small></div>
-        </div>
-      </div>
+      <div class="achieve-grid" id="achieveGrid"></div>
     </div>
   </section>
 
@@ -538,141 +367,253 @@
     <div class="container">
       <div class="kicker reveal">Education</div>
       <h2 class="section-title reveal">Academic background.</h2>
-
-      <div class="edu-item reveal">
-        <div>
-          <div class="edu-name">Tokyo International University</div>
-          <div class="edu-degree">B.A., Digital Business &amp; Innovation (DBI) Major</div>
-          <div class="edu-detail">Current CGPA: 3.51 · Senior / Final-year standing</div>
-        </div>
-        <div class="edu-date">Expected Aug 2027</div>
-      </div>
-
-      <div class="edu-item reveal">
-        <div>
-          <div class="edu-name">Dhaka Residential Model College</div>
-          <div class="edu-degree">Higher Secondary Certificate</div>
-          <div class="edu-detail">GPA: 5.00 / 5.00</div>
-        </div>
-        <div class="edu-date">Graduated 2022</div>
-      </div>
-
+      <div id="eduList"></div>
       <div style="margin-top:56px;">
         <div class="kicker reveal">Languages</div>
-        <div class="lang-grid">
-          <div class="lang-card reveal"><div class="lang-name">Bangla</div><div class="lang-level">Native</div></div>
-          <div class="lang-card reveal"><div class="lang-name">English</div><div class="lang-level">Native</div></div>
-          <div class="lang-card reveal"><div class="lang-name">Hindi</div><div class="lang-level">Fluent</div></div>
-          <div class="lang-card reveal"><div class="lang-name">Japanese</div><div class="lang-level">N3 · Conversational</div></div>
-        </div>
+        <div class="lang-grid" id="langGrid"></div>
       </div>
     </div>
   </section>
 
   <!-- CONTACT -->
   <section id="contact" class="contact-section">
-    <div class="container">
-      <div class="kicker reveal" style="justify-content:center;">Get in touch</div>
-      <h2 class="reveal">Let's talk about an opportunity.</h2>
-      <p class="reveal">Open to analyst, finance, and fintech roles — internships or full-time. Based in Saitama, Japan, happy to discuss remote or relocation.</p>
-      <div class="contact-actions reveal">
-        <a href="mailto:d12281wasee@gmail.com" class="btn btn-primary">d12281wasee@gmail.com</a>
-        <a href="https://linkedin.com/in/ishtiaque-wasee-1401b7276" target="_blank" rel="noopener" class="btn btn-outline">LinkedIn ↗</a>
-        <a href="Ishtiaque_Rahman_Wasee_Resume.pdf" download class="btn btn-outline">Download résumé</a>
-      </div>
-    </div>
+    <div class="container" id="contactContainer"></div>
   </section>
 
 </main>
 
 <footer>
-  <div class="container">
-    &copy; 2026 Ishtiaque Rahman Wasee · Built for analyst &amp; finance opportunities · <a href="mailto:d12281wasee@gmail.com">d12281wasee@gmail.com</a>
-  </div>
+  <div class="container" id="footerContainer"></div>
 </footer>
 
 <button id="toTop" aria-label="Back to top">↑</button>
 
 <script>
-  // Mobile nav toggle
-  const navToggle = document.getElementById('navToggle');
-  const mobilePanel = document.getElementById('mobilePanel');
-  navToggle.addEventListener('click', () => mobilePanel.classList.toggle('open'));
-  mobilePanel.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mobilePanel.classList.remove('open')));
+  // ---- helpers ----
+  function esc(s){
+    return String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  }
+  // Renders **bold** as a styled <strong>, escaping everything else first.
+  function md(s){
+    return esc(s).replace(/\*\*(.+?)\*\*/g, '<strong style="color:var(--text)">$1</strong>');
+  }
 
-  // Active nav link on scroll
-  const sections = document.querySelectorAll('section[id]');
-  const navLinks = document.querySelectorAll('.nav-links a[href^="#"]');
-  const setActive = () => {
-    let current = '';
-    sections.forEach(sec => {
-      const rect = sec.getBoundingClientRect();
-      if (rect.top <= 120 && rect.bottom >= 120) current = sec.id;
-    });
-    navLinks.forEach(l => {
-      l.classList.toggle('active', l.getAttribute('href') === '#' + current);
-    });
-  };
-  document.addEventListener('scroll', setActive, { passive: true });
+  function render(data){
+    // HERO
+    document.getElementById('heroContainer').innerHTML = `
+      <div class="hero-avatar reveal in">${esc(data.hero.avatarInitials)}</div>
+      <div class="kicker reveal in">${esc(data.hero.kicker)}</div>
+      <h1 class="reveal in">${esc(data.hero.headline)}<br><span class="accent-word">${esc(data.hero.headlineAccent)}</span></h1>
+      <p class="hero-sub reveal in">${esc(data.hero.sub)}</p>
+      <div class="hero-actions reveal in">
+        <a href="mailto:${esc(data.hero.email)}" class="btn btn-primary">Get in touch →</a>
+        <a href="${esc(data.hero.resumeFile)}" class="btn btn-outline" download>Download résumé</a>
+        <a href="${esc(data.hero.linkedin)}" target="_blank" rel="noopener" class="btn btn-outline">LinkedIn ↗</a>
+      </div>
+      <div class="hero-meta reveal in">
+        <span>📍 ${esc(data.hero.location)}</span>
+        <span>✉️ ${esc(data.hero.email)}</span>
+        <span>📱 ${esc(data.hero.phone)}</span>
+      </div>
+    `;
 
-  // Reveal on scroll
-  const revealEls = document.querySelectorAll('.reveal');
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.classList.add('in');
-        io.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.12 });
-  revealEls.forEach(el => io.observe(el));
+    // STATS
+    document.getElementById('statsStrip').innerHTML = data.stats.map(s => `
+      <div class="stat">
+        <div class="stat-num" data-count="${esc(s.count)}" data-suffix="${esc(s.suffix)}">0${esc(s.suffix)}</div>
+        <div class="stat-label">${esc(s.label)}</div>
+      </div>
+    `).join('');
 
-  // Count-up stats
-  const statNums = document.querySelectorAll('.stat-num');
-  const countUp = (el) => {
-    const target = parseFloat(el.getAttribute('data-count'));
-    const suffix = el.getAttribute('data-suffix') || '';
-    const isDecimal = target % 1 !== 0;
-    let cur = 0;
-    const duration = 1200;
-    const start = performance.now();
-    const step = (now) => {
-      const p = Math.min((now - start) / duration, 1);
-      const eased = 1 - Math.pow(1 - p, 3);
-      cur = target * eased;
-      el.textContent = (isDecimal ? cur.toFixed(2) : Math.round(cur)) + suffix;
-      if (p < 1) requestAnimationFrame(step);
+    // ABOUT
+    document.getElementById('aboutContainer').innerHTML = `
+      <div class="kicker reveal">${esc(data.about.kicker)}</div>
+      <h2 class="section-title reveal">${esc(data.about.title)}</h2>
+      <div class="about-grid">
+        <div class="about-text reveal">
+          ${data.about.paragraphs.map(p => `<p>${md(p)}</p>`).join('')}
+        </div>
+        <div class="focus-card reveal">
+          <h3>Quick Facts</h3>
+          ${data.about.quickFacts.map(f => `<div class="focus-item"><span>${esc(f.label)}</span><span>${esc(f.value)}</span></div>`).join('')}
+        </div>
+      </div>
+    `;
+
+    // EXPERIENCE
+    document.getElementById('experienceList').innerHTML = data.experience.map(e => `
+      <div class="exp-item reveal">
+        <div class="exp-date">${esc(e.date)}</div>
+        <div>
+          <div class="exp-role">${esc(e.role)}</div>
+          <div class="exp-org">${esc(e.org)}</div>
+          <ul>${e.bullets.map(b => `<li>${md(b)}</li>`).join('')}</ul>
+        </div>
+      </div>
+    `).join('');
+
+    // PROJECTS
+    document.getElementById('projectGrid').innerHTML = data.projects.map(p => `
+      <div class="project-card reveal">
+        <span class="project-tag">${esc(p.tag)}</span>
+        <h3>${esc(p.title)}</h3>
+        <div class="project-meta-row">
+          <div>${esc(p.metaLabel1)}<strong>${esc(p.metaValue1)}</strong></div>
+          <div>${esc(p.metaLabel2)}<strong>${esc(p.metaValue2)}</strong></div>
+        </div>
+        <ul>${p.bullets.map(b => `<li>${md(b)}</li>`).join('')}</ul>
+        <div class="tech-row">${p.tech.map(t => `<span class="tech-pill">${esc(t)}</span>`).join('')}</div>
+      </div>
+    `).join('');
+
+    // SKILLS
+    document.getElementById('skillsWrap').innerHTML = data.skills.map(cat => `
+      <div class="skill-card reveal">
+        <h3>${esc(cat.category)}</h3>
+        ${cat.items.map(it => `
+          <div class="bar-row">
+            <div class="bar-label"><span>${esc(it.label)}</span><span>${esc(it.note)}</span></div>
+            <div class="bar-track"><div class="bar-fill" data-width="${esc(it.level)}"></div></div>
+          </div>
+        `).join('')}
+      </div>
+    `).join('');
+
+    // ACHIEVEMENTS
+    const achieveIcon = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="6"/><path d="M8.5 13.5L7 22l5-3 5 3-1.5-8.5"/></svg>';
+    document.getElementById('achieveGrid').innerHTML = data.achievements.map(a => `
+      <div class="achieve-item reveal">
+        <div class="achieve-icon">${achieveIcon}</div>
+        <div class="achieve-text">${esc(a.title)}<small>${esc(a.detail)}</small></div>
+      </div>
+    `).join('');
+
+    // EDUCATION
+    document.getElementById('eduList').innerHTML = data.education.map(ed => `
+      <div class="edu-item reveal">
+        <div>
+          <div class="edu-name">${esc(ed.name)}</div>
+          <div class="edu-degree">${esc(ed.degree)}</div>
+          <div class="edu-detail">${esc(ed.detail)}</div>
+        </div>
+        <div class="edu-date">${esc(ed.date)}</div>
+      </div>
+    `).join('');
+
+    // LANGUAGES
+    document.getElementById('langGrid').innerHTML = data.languages.map(l => `
+      <div class="lang-card reveal"><div class="lang-name">${esc(l.name)}</div><div class="lang-level">${esc(l.level)}</div></div>
+    `).join('');
+
+    // CONTACT
+    document.getElementById('contactContainer').innerHTML = `
+      <div class="kicker reveal" style="justify-content:center;">Get in touch</div>
+      <h2 class="reveal">${esc(data.contact.title)}</h2>
+      <p class="reveal">${esc(data.contact.text)}</p>
+      <div class="contact-actions reveal">
+        <a href="mailto:${esc(data.hero.email)}" class="btn btn-primary">${esc(data.hero.email)}</a>
+        <a href="${esc(data.hero.linkedin)}" target="_blank" rel="noopener" class="btn btn-outline">LinkedIn ↗</a>
+        <a href="${esc(data.hero.resumeFile)}" download class="btn btn-outline">Download résumé</a>
+      </div>
+    `;
+
+    // FOOTER
+    document.getElementById('footerContainer').innerHTML = `
+      ${esc(data.footer.text)} · <a href="mailto:${esc(data.hero.email)}">${esc(data.hero.email)}</a>
+    `;
+
+    initInteractions();
+  }
+
+  function initInteractions(){
+    // Mobile nav toggle
+    const navToggle = document.getElementById('navToggle');
+    const mobilePanel = document.getElementById('mobilePanel');
+    navToggle.addEventListener('click', () => mobilePanel.classList.toggle('open'));
+    mobilePanel.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mobilePanel.classList.remove('open')));
+
+    // Active nav link on scroll
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-links a[href^="#"]');
+    const setActive = () => {
+      let current = '';
+      sections.forEach(sec => {
+        const rect = sec.getBoundingClientRect();
+        if (rect.top <= 120 && rect.bottom >= 120) current = sec.id;
+      });
+      navLinks.forEach(l => {
+        l.classList.toggle('active', l.getAttribute('href') === '#' + current);
+      });
     };
-    requestAnimationFrame(step);
-  };
-  const statIo = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        countUp(e.target);
-        statIo.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.5 });
-  statNums.forEach(el => statIo.observe(el));
+    document.addEventListener('scroll', setActive, { passive: true });
 
-  // Skill bar fill
-  const bars = document.querySelectorAll('.bar-fill');
-  const barIo = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.style.width = e.target.getAttribute('data-width') + '%';
-        barIo.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.3 });
-  bars.forEach(b => barIo.observe(b));
+    // Reveal on scroll
+    const revealEls = document.querySelectorAll('.reveal:not(.in)');
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('in');
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    revealEls.forEach(el => io.observe(el));
 
-  // Back to top
-  const toTop = document.getElementById('toTop');
-  window.addEventListener('scroll', () => {
-    toTop.classList.toggle('show', window.scrollY > 500);
-  }, { passive: true });
-  toTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+    // Count-up stats
+    const statNums = document.querySelectorAll('.stat-num');
+    const countUp = (el) => {
+      const target = parseFloat(el.getAttribute('data-count'));
+      const suffix = el.getAttribute('data-suffix') || '';
+      const isDecimal = target % 1 !== 0;
+      let cur = 0;
+      const duration = 1200;
+      const start = performance.now();
+      const step = (now) => {
+        const p = Math.min((now - start) / duration, 1);
+        const eased = 1 - Math.pow(1 - p, 3);
+        cur = target * eased;
+        el.textContent = (isDecimal ? cur.toFixed(2) : Math.round(cur)) + suffix;
+        if (p < 1) requestAnimationFrame(step);
+      };
+      requestAnimationFrame(step);
+    };
+    const statIo = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          countUp(e.target);
+          statIo.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.5 });
+    statNums.forEach(el => statIo.observe(el));
+
+    // Skill bar fill
+    const bars = document.querySelectorAll('.bar-fill');
+    const barIo = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.style.width = e.target.getAttribute('data-width') + '%';
+          barIo.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.3 });
+    bars.forEach(b => barIo.observe(b));
+
+    // Back to top
+    const toTop = document.getElementById('toTop');
+    window.addEventListener('scroll', () => {
+      toTop.classList.toggle('show', window.scrollY > 500);
+    }, { passive: true });
+    toTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+  }
+
+  fetch('data.json?v=' + Date.now())
+    .then(r => r.json())
+    .then(render)
+    .catch(err => {
+      document.getElementById('heroContainer').innerHTML = '<p style="color:#f2b705">Could not load content (data.json). Please refresh.</p>';
+      console.error(err);
+    });
 </script>
 
 </body>

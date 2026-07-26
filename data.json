@@ -1,0 +1,141 @@
+{
+  "hero": {
+    "avatarInitials": "IW",
+    "kicker": "Open to analyst & finance roles",
+    "headline": "Turning raw data into",
+    "headlineAccent": "financial clarity.",
+    "sub": "Final-year Digital Business & Innovation student at Tokyo International University. I use SQL and Python to dig into financial data — and bring the same discipline to leading teams under pressure.",
+    "location": "Saitama, Japan",
+    "email": "d12281wasee@gmail.com",
+    "phone": "080-7449-1228",
+    "linkedin": "https://linkedin.com/in/ishtiaque-wasee-1401b7276",
+    "resumeFile": "Ishtiaque_Rahman_Wasee_Resume.pdf"
+  },
+  "stats": [
+    { "count": "42.40", "suffix": "%", "label": "Best 2024 return identified (JPM) in portfolio analysis" },
+    { "count": "20", "suffix": "%", "label": "Estimated reduction in stockouts from demand forecasting" },
+    { "count": "150", "suffix": "", "label": "Daily orders tracked & analyzed at Looms Avenue" },
+    { "count": "80", "suffix": "", "label": "Debaters coached and mentored since 2024" }
+  ],
+  "about": {
+    "kicker": "Profile",
+    "title": "Analytical by training, a communicator by practice.",
+    "paragraphs": [
+      "I'm a final-year **Digital Business & Innovation** student at Tokyo International University, building toward a career in **analyst, finance, and fintech** roles. My work sits at the intersection of numbers and narrative: I use **SQL and Python** to pull structure out of messy financial data, then translate what I find into decisions people can act on.",
+      "That habit of translating complexity into something clear didn't start in a classroom — it comes from two years coaching competitive debate, where the job is to take a dense argument and make it land in three minutes. I bring the same rigor and clarity to spreadsheets and SQL queries as I do to a debate brief.",
+      "Currently based in Saitama, Japan, holding a **3.51 CGPA** in my senior year, and conversational in Japanese (JLPT N3) alongside native fluency in Bangla and English."
+    ],
+    "quickFacts": [
+      { "label": "Standing", "value": "Senior / Final-year" },
+      { "label": "CGPA", "value": "3.51" },
+      { "label": "Graduating", "value": "Aug 2027" },
+      { "label": "Base", "value": "Saitama, Japan" },
+      { "label": "Languages", "value": "4" },
+      { "label": "Focus", "value": "Analyst / Finance" }
+    ]
+  },
+  "experience": [
+    {
+      "date": "Mar 2025 – Aug 2025",
+      "role": "Financial Analyst",
+      "org": "Looms Avenue",
+      "bullets": [
+        "Tracked and managed 100–150 daily orders for an early-stage e-commerce startup, monitoring fulfillment status and flagging process bottlenecks to leadership.",
+        "Analyzed sales and order data to identify a **~15% month-over-month growth trend**, directly informing pricing and inventory decisions.",
+        "Built demand forecasts from order and growth data, helping reduce stockouts by an estimated **20%** during peak periods."
+      ]
+    },
+    {
+      "date": "2024 – Present",
+      "role": "Debate Coach",
+      "org": "Habiganj Debating Society",
+      "bullets": [
+        "Coach and mentor a roster of **80 debaters**, designing training curricula on argumentation, rebuttal, and public speaking.",
+        "Run regular practice tournaments and structured feedback sessions to prepare debaters for competitive circuits."
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "tag": "Portfolio Analysis",
+      "title": "Stock Price Tracker",
+      "metaLabel1": "Approach",
+      "metaValue1": "Data pipeline + EDA",
+      "metaLabel2": "Coverage",
+      "metaValue2": "JPM · MSFT · AAPL",
+      "bullets": [
+        "Built an end-to-end stock analysis pipeline in Python (pandas, matplotlib, yfinance) — data collection, cleaning, exploratory analysis, and visualization for a multi-stock portfolio.",
+        "Computed daily returns, 30-day rolling volatility, and cross-stock correlation to evaluate risk and diversification benefits.",
+        "Result: JPM delivered the best 2024 total return (42.40%), MSFT showed the lowest volatility, and low JPM–AAPL correlation supported the case for diversification."
+      ],
+      "tech": ["Python", "pandas", "matplotlib", "yfinance"]
+    },
+    {
+      "tag": "SQL Analytics",
+      "title": "Bank Transaction Analyzer",
+      "metaLabel1": "Approach",
+      "metaValue1": "SQLite + query design",
+      "metaLabel2": "Focus",
+      "metaValue2": "Spending patterns",
+      "bullets": [
+        "Designed and queried a SQLite database of personal bank transactions to surface spending patterns, monthly trends, and top expense categories.",
+        "Wrote SQL queries — aggregate functions, GROUP BY, strftime date parsing — to rank top merchants by volume and compute average transaction size by category.",
+        "Flagged the largest single transactions to support anomaly review and budgeting decisions."
+      ],
+      "tech": ["SQL", "SQLite", "DB Browser"]
+    }
+  ],
+  "skills": [
+    {
+      "category": "Technical",
+      "items": [
+        { "label": "SQL", "note": "Query design, aggregation, joins", "level": 90 },
+        { "label": "Python (pandas, matplotlib)", "note": "Data analysis & viz", "level": 85 },
+        { "label": "Excel & Microsoft Office", "note": "Modeling & reporting", "level": 88 },
+        { "label": "SQLite / DB Browser", "note": "Database design", "level": 80 }
+      ]
+    },
+    {
+      "category": "Interpersonal",
+      "items": [
+        { "label": "Public Speaking", "note": "Competitive-tested", "level": 95 },
+        { "label": "Debate & Argumentation", "note": "National champion", "level": 95 },
+        { "label": "Coaching & Mentorship", "note": "80 debaters, 2+ yrs", "level": 90 },
+        { "label": "Leadership", "note": "Team & org level", "level": 85 }
+      ]
+    }
+  ],
+  "achievements": [
+    { "title": "National Debate Champion", "detail": "High School Championship, 2022" },
+    { "title": "Debate Coach, Habiganj Debating Society", "detail": "Mentoring 80 active debaters" },
+    { "title": "HSBC Business Case Competition", "detail": "Semi-Finalist, 2026" },
+    { "title": "Hult Prize — Vice President", "detail": "Tokyo International University, 2025–2026" }
+  ],
+  "education": [
+    {
+      "name": "Tokyo International University",
+      "degree": "B.A., Digital Business & Innovation (DBI) Major",
+      "detail": "Current CGPA: 3.51 · Senior / Final-year standing",
+      "date": "Expected Aug 2027"
+    },
+    {
+      "name": "Dhaka Residential Model College",
+      "degree": "Higher Secondary Certificate",
+      "detail": "GPA: 5.00 / 5.00",
+      "date": "Graduated 2022"
+    }
+  ],
+  "languages": [
+    { "name": "Bangla", "level": "Native" },
+    { "name": "English", "level": "Native" },
+    { "name": "Hindi", "level": "Fluent" },
+    { "name": "Japanese", "level": "N3 · Conversational" }
+  ],
+  "contact": {
+    "title": "Let's talk about an opportunity.",
+    "text": "Open to analyst, finance, and fintech roles — internships or full-time. Based in Saitama, Japan, happy to discuss remote or relocation."
+  },
+  "footer": {
+    "text": "© 2026 Ishtiaque Rahman Wasee · Built for analyst & finance opportunities"
+  }
+}

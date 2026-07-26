@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Portfolio Admin</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#080b12; --card:#111828; --card2:#151d30;
+    --border:rgba(255,255,255,.1); --text:#eef1f7; --muted:#8a95ab;
+    --accent:#2fe0a8; --accent2:#f2b705; --danger:#ef5a5a;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);line-height:1.5;}
+  h1,h2,h3{font-family:'Space Grotesk',sans-serif;}
+  .wrap{max-width:880px;margin:0 auto;padding:32px 24px 120px;}
+  .gate{max-width:360px;margin:120px auto;text-align:center;}
+  .gate input{width:100%;padding:12px 14px;border-radius:8px;border:1px solid var(--border);background:var(--card);color:var(--text);font-size:15px;margin-top:16px;}
+  .gate button{margin-top:14px;width:100%;padding:12px;border-radius:8px;border:none;background:var(--accent);color:#04140f;font-weight:700;cursor:pointer;font-size:14px;}
+  .topbar{position:sticky;top:0;z-index:50;background:rgba(8,11,18,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--border);padding:14px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;}
+  .topbar h1{font-size:16px;margin:0;}
+  .topbar .actions{display:flex;gap:10px;align-items:center;}
+  .topbar input[type=password]{padding:9px 12px;border-radius:7px;border:1px solid var(--border);background:var(--card);color:var(--text);font-size:13px;width:220px;}
+  .btn{padding:10px 18px;border-radius:8px;border:none;font-weight:700;font-size:13px;cursor:pointer;}
+  .btn-save{background:var(--accent);color:#04140f;}
+  .btn-save:disabled{opacity:.5;cursor:not-allowed;}
+  .btn-ghost{background:transparent;border:1px solid var(--border);color:var(--text);}
+  #status{font-size:12.5px;color:var(--muted);}
+  #status.ok{color:var(--accent);}
+  #status.err{color:var(--danger);}
+  section.block{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:22px;margin-bottom:20px;}
+  section.block h2{font-size:15px;text-transform:uppercase;letter-spacing:.8px;color:var(--accent2);margin:0 0 16px;}
+  label{display:block;font-size:12.5px;color:var(--muted);margin-bottom:5px;margin-top:12px;}
+  label:first-child{margin-top:0;}
+  input[type=text], textarea{
+    width:100%;padding:10px 12px;border-radius:7px;border:1px solid var(--border);
+    background:var(--bg);color:var(--text);font-size:14px;font-family:inherit;resize:vertical;
+  }
+  textarea{min-height:70px;}
+  .row2{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+  .item-card{border:1px solid var(--border);background:var(--card2);border-radius:10px;padding:16px;margin-bottom:14px;position:relative;}
+  .item-card .rm{position:absolute;top:10px;right:10px;background:none;border:1px solid var(--border);color:var(--danger);border-radius:6px;width:26px;height:26px;cursor:pointer;font-size:13px;}
+  .add-btn{margin-top:4px;padding:9px 16px;border-radius:7px;border:1px dashed var(--border);background:transparent;color:var(--accent);font-weight:600;font-size:13px;cursor:pointer;width:100%;}
+  .hint{font-size:11.5px;color:var(--muted);margin-top:4px;}
+  .subhead{font-size:12px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.6px;margin:18px 0 8px;}
+  .subhead:first-child{margin-top:0;}
+</style>
+</head>
+<body>
+
+<div id="gateScreen" class="gate">
+  <h1>Portfolio Admin</h1>
+  <p class="hint">This page is not linked from the site and isn't meant to keep out a determined visitor on its own — the real protection is that saving requires your personal GitHub token, entered separately below.</p>
+  <input type="password" id="passInput" placeholder="Passphrase">
+  <button onclick="checkPass()">Enter</button>
+  <p id="gateErr" class="hint" style="color:#ef5a5a;display:none;">Incorrect passphrase.</p>
+</div>
+
+<div id="adminScreen" style="display:none;">
+  <div class="topbar">
+    <h1>Portfolio Admin</h1>
+    <div class="actions">
+      <input type="password" id="ghToken" placeholder="GitHub token (paste each session)">
+      <a class="btn btn-ghost" href="https://waseeishtiaque.github.io/portfolio/" target="_blank">View live site ↗</a>
+      <button class="btn btn-save" id="saveBtn" onclick="saveChanges()">Save & Publish</button>
+    </div>
+  </div>
+  <div class="wrap">
+    <p id="status">Loading current content…</p>
+    <div id="form"></div>
+  </div>
+</div>
+
+<script>
+  const REPO_OWNER = 'waseeishtiaque';
+  const REPO_NAME = 'portfolio';
+  const FILE_PATH = 'data.json';
+  const BRANCH = 'main';
+  const PASSPHRASE = 'wasee-admin-26'; // change this to anything you like
+
+  function checkPass(){
+    const v = document.getElementById('passInput').value;
+    if (v === PASSPHRASE) {
+      document.getElementById('gateScreen').style.display = 'none';
+      document.getElementById('adminScreen').style.display = 'block';
+      loadData();
+    } else {
+      document.getElementById('gateErr').style.display = 'block';
+    }
+  }
+  document.getElementById('passInput').addEventListener('keydown', e => { if (e.key === 'Enter') checkPass(); });
+
+  // restore token from this-tab session only
+  const savedToken = sessionStorage.getItem('gh_token');
+  if (savedToken) document.addEventListener('DOMContentLoaded', () => { document.getElementById('ghToken').value = savedToken; });
+  document.addEventListener('input', e => {
+    if (e.target && e.target.id === 'ghToken') sessionStorage.setItem('gh_token', e.target.value);
+  });
+
+  let state = null;
+  let fileSha = null;
+
+  function setStatus(msg, kind){
+    const el = document.getElementById('status');
+    el.textContent = msg;
+    el.className = kind || '';
+  }
+
+  async function loadData(){
+    try {
+      const res = await fetch(`https://raw.githubusercontent.com/${REPO_OWNER}/${REPO_NAME}/${BRANCH}/${FILE_PATH}?v=` + Date.now());
+      if (!res.ok) throw new Error('Could not fetch data.json (' + res.status + ')');
+      state = await res.json();
+      setStatus('Loaded current content. Edit below, then Save & Publish.');
+      renderForm();
+    } catch (err) {
+      setStatus('Failed to load content: ' + err.message, 'err');
+    }
+  }
+
+  function field(labelText, value, onInput, multiline){
+    const wrap = document.createElement('div');
+    const label = document.createElement('label');
+    label.textContent = labelText;
+    const input = document.createElement(multiline ? 'textarea' : 'input');
+    if (!multiline) input.type = 'text';
+    input.value = value ?? '';
+    input.addEventListener('input', () => onInput(input.value));
+    wrap.appendChild(label);
+    wrap.appendChild(input);
+    return wrap;
+  }
+
+  function blockEl(title){
+    const s = document.createElement('section');
+    s.className = 'block';
+    const h = document.createElement('h2');
+    h.textContent = title;
+    s.appendChild(h);
+    return s;
+  }
+
+  function renderForm(){
+    const form = document.getElementById('form');
+    form.innerHTML = '';
+
+    // HERO
+    const heroB = blockEl('Hero');
+    heroB.appendChild(field('Name / avatar initials', state.hero.avatarInitials, v => state.hero.avatarInitials = v));
+    heroB.appendChild(field('Kicker (small line above headline)', state.hero.kicker, v => state.hero.kicker = v));
+    heroB.appendChild(field('Headline (line 1)', state.hero.headline, v => state.hero.headline = v));
+    heroB.appendChild(field('Headline accent (line 2, highlighted)', state.hero.headlineAccent, v => state.hero.headlineAccent = v));
+    heroB.appendChild(field('Subtext', state.hero.sub, v => state.hero.sub = v, true));
+    const row = document.createElement('div'); row.className = 'row2';
+    row.appendChild(field('Location', state.hero.location, v => state.hero.location = v));
+    row.appendChild(field('Phone', state.hero.phone, v => state.hero.phone = v));
+    heroB.appendChild(row);
+    heroB.appendChild(field('Email', state.hero.email, v => state.hero.email = v));
+    heroB.appendChild(field('LinkedIn URL', state.hero.linkedin, v => state.hero.linkedin = v));
+    heroB.appendChild(field('Résumé filename (must already be uploaded to the repo)', state.hero.resumeFile, v => state.hero.resumeFile = v));
+    form.appendChild(heroB);
+
+    // STATS
+    const statsB = blockEl('Stats strip (4 numbers)');
+    state.stats.forEach((s, i) => {
+      const card = document.createElement('div'); card.className = 'item-card';
+      const r = document.createElement('div'); r.className = 'row2';
+      r.appendChild(field('Number', s.count, v => state.stats[i].count = v));
+      r.appendChild(field('Suffix (e.g. % or blank)', s.suffix, v => state.stats[i].suffix = v));
+      card.appendChild(r);
+      card.appendChild(field('Label', s.label, v => state.stats[i].label = v, true));
+      statsB.appendChild(card);
+    });
+    form.appendChild(statsB);
+
+    // ABOUT
+    const aboutB = blockEl('About');
+    aboutB.appendChild(field('Kicker', state.about.kicker, v => state.about.kicker = v));
+    aboutB.appendChild(field('Title', state.about.title, v => state.about.title = v));
+    aboutB.appendChild(field('Paragraphs (use **text** for bold, one paragraph per box)', '', () => {}));
+    state.about.paragraphs.forEach((p, i) => {
+      aboutB.appendChild(field('Paragraph ' + (i + 1), p, v => state.about.paragraphs[i] = v, true));
+    });
+    aboutB.appendChild(field('Quick Facts (Label | Value, one per line)',
+      state.about.quickFacts.map(f => f.label + ' | ' + f.value).join('\n'),
+      v => { state.about.quickFacts = v.split('\n').filter(l => l.trim()).map(l => { const [label, value] = l.split('|').map(s => s.trim()); return { label: label || '', value: value || '' }; }); },
+      true));
+    form.appendChild(aboutB);
+
+    // EXPERIENCE (repeatable)
+    const expB = blockEl('Experience');
+    function renderExp(){
+      Array.from(expB.querySelectorAll('.item-card')).forEach(el => el.remove());
+      const addBtn = expB.querySelector('.add-btn');
+      state.experience.forEach((e, i) => {
+        const card = document.createElement('div'); card.className = 'item-card';
+        const rm = document.createElement('button'); rm.className = 'rm'; rm.textContent = '✕';
+        rm.onclick = () => { state.experience.splice(i, 1); renderExp(); };
+        card.appendChild(rm);
+        card.appendChild(field('Date range', e.date, v => state.experience[i].date = v));
+        const r2 = document.createElement('div'); r2.className = 'row2';
+        r2.appendChild(field('Role', e.role, v => state.experience[i].role = v));
+        r2.appendChild(field('Organization', e.org, v => state.experience[i].org = v));
+        card.appendChild(r2);
+        card.appendChild(field('Bullets (one per line, **bold** supported)', e.bullets.join('\n'), v => state.experience[i].bullets = v.split('\n').filter(l => l.trim()), true));
+        expB.insertBefore(card, addBtn);
+      });
+    }
+    const expAdd = document.createElement('button'); expAdd.className = 'add-btn'; expAdd.textContent = '+ Add experience entry';
+    expAdd.onclick = () => { state.experience.push({ date: '', role: '', org: '', bullets: [] }); renderExp(); };
+    expB.appendChild(expAdd);
+    renderExp();
+    form.appendChild(expB);
+
+    // PROJECTS (repeatable)
+    const projB = blockEl('Projects');
+    function renderProj(){
+      Array.from(projB.querySelectorAll('.item-card')).forEach(el => el.remove());
+      const addBtn = projB.querySelector('.add-btn');
+      state.projects.forEach((p, i) => {
+        const card = document.createElement('div'); card.className = 'item-card';
+        const rm = document.createElement('button'); rm.className = 'rm'; rm.textContent = '✕';
+        rm.onclick = () => { state.projects.splice(i, 1); renderProj(); };
+        card.appendChild(rm);
+        const r1 = document.createElement('div'); r1.className = 'row2';
+        r1.appendChild(field('Tag', p.tag, v => state.projects[i].tag = v));
+        r1.appendChild(field('Title', p.title, v => state.projects[i].title = v));
+        card.appendChild(r1);
+        const r2 = document.createElement('div'); r2.className = 'row2';
+        r2.appendChild(field('Meta label 1', p.metaLabel1, v => state.projects[i].metaLabel1 = v));
+        r2.appendChild(field('Meta value 1', p.metaValue1, v => state.projects[i].metaValue1 = v));
+        card.appendChild(r2);
+        const r3 = document.createElement('div'); r3.className = 'row2';
+        r3.appendChild(field('Meta label 2', p.metaLabel2, v => state.projects[i].metaLabel2 = v));
+        r3.appendChild(field('Meta value 2', p.metaValue2, v => state.projects[i].metaValue2 = v));
+        card.appendChild(r3);
+        card.appendChild(field('Bullets (one per line, **bold** supported)', p.bullets.join('\n'), v => state.projects[i].bullets = v.split('\n').filter(l => l.trim()), true));
+        card.appendChild(field('Tech tags (comma separated)', p.tech.join(', '), v => state.projects[i].tech = v.split(',').map(t => t.trim()).filter(Boolean)));
+        projB.insertBefore(card, addBtn);
+      });
+    }
+    const projAdd = document.createElement('button'); projAdd.className = 'add-btn'; projAdd.textContent = '+ Add project';
+    projAdd.onclick = () => { state.projects.push({ tag: '', title: '', metaLabel1: '', metaValue1: '', metaLabel2: '', metaValue2: '', bullets: [], tech: [] }); renderProj(); };
+    projB.appendChild(projAdd);
+    renderProj();
+    form.appendChild(projB);
+
+    // SKILLS (2 fixed categories, repeatable items)
+    const skillsB = blockEl('Skills');
+    state.skills.forEach((cat, ci) => {
+      const sub = document.createElement('div'); sub.className = 'subhead'; sub.textContent = cat.category + ' category';
+      skillsB.appendChild(sub);
+      const catWrap = document.createElement('div');
+      function renderCat(){
+        Array.from(catWrap.querySelectorAll('.item-card')).forEach(el => el.remove());
+        const addBtn = catWrap.querySelector('.add-btn');
+        cat.items.forEach((it, ii) => {
+          const card = document.createElement('div'); card.className = 'item-card';
+          const rm = document.createElement('button'); rm.className = 'rm'; rm.textContent = '✕';
+          rm.onclick = () => { state.skills[ci].items.splice(ii, 1); renderCat(); };
+          card.appendChild(rm);
+          const r = document.createElement('div'); r.className = 'row2';
+          r.appendChild(field('Skill name', it.label, v => state.skills[ci].items[ii].label = v));
+          r.appendChild(field('Note', it.note, v => state.skills[ci].items[ii].note = v));
+          card.appendChild(r);
+          card.appendChild(field('Level (0-100)', String(it.level), v => state.skills[ci].items[ii].level = parseInt(v) || 0));
+          catWrap.insertBefore(card, addBtn);
+        });
+      }
+      const addBtn = document.createElement('button'); addBtn.className = 'add-btn'; addBtn.textContent = '+ Add skill to ' + cat.category;
+      addBtn.onclick = () => { state.skills[ci].items.push({ label: '', note: '', level: 70 }); renderCat(); };
+      catWrap.appendChild(addBtn);
+      renderCat();
+      skillsB.appendChild(catWrap);
+    });
+    form.appendChild(skillsB);
+
+    // ACHIEVEMENTS (repeatable)
+    const achB = blockEl('Achievements');
+    function renderAch(){
+      Array.from(achB.querySelectorAll('.item-card')).forEach(el => el.remove());
+      const addBtn = achB.querySelector('.add-btn');
+      state.achievements.forEach((a, i) => {
+        const card = document.createElement('div'); card.className = 'item-card';
+        const rm = document.createElement('button'); rm.className = 'rm'; rm.textContent = '✕';
+        rm.onclick = () => { state.achievements.splice(i, 1); renderAch(); };
+        card.appendChild(rm);
+        card.appendChild(field('Title', a.title, v => state.achievements[i].title = v));
+        card.appendChild(field('Detail', a.detail, v => state.achievements[i].detail = v));
+        achB.insertBefore(card, addBtn);
+      });
+    }
+    const achAdd = document.createElement('button'); achAdd.className = 'add-btn'; achAdd.textContent = '+ Add achievement';
+    achAdd.onclick = () => { state.achievements.push({ title: '', detail: '' }); renderAch(); };
+    achB.appendChild(achAdd);
+    renderAch();
+    form.appendChild(achB);
+
+    // EDUCATION (repeatable)
+    const eduB = blockEl('Education');
+    function renderEdu(){
+      Array.from(eduB.querySelectorAll('.item-card')).forEach(el => el.remove());
+      const addBtn = eduB.querySelector('.add-btn');
+      state.education.forEach((ed, i) => {
+        const card = document.createElement('div'); card.className = 'item-card';
+        const rm = document.createElement('button'); rm.className = 'rm'; rm.textContent = '✕';
+        rm.onclick = () => { state.education.splice(i, 1); renderEdu(); };
+        card.appendChild(rm);
+        card.appendChild(field('School name', ed.name, v => state.education[i].name = v));
+        card.appendChild(field('Degree', ed.degree, v => state.education[i].degree = v));
+        card.appendChild(field('Detail (e.g. GPA)', ed.detail, v => state.education[i].detail = v));
+        card.appendChild(field('Date', ed.date, v => state.education[i].date = v));
+        eduB.insertBefore(card, addBtn);
+      });
+    }
+    const eduAdd = document.createElement('button'); eduAdd.className = 'add-btn'; eduAdd.textContent = '+ Add education entry';
+    eduAdd.onclick = () => { state.education.push({ name: '', degree: '', detail: '', date: '' }); renderEdu(); };
+    eduB.appendChild(eduAdd);
+    renderEdu();
+    form.appendChild(eduB);
+
+    // LANGUAGES (repeatable)
+    const langB = blockEl('Languages');
+    function renderLang(){
+      Array.from(langB.querySelectorAll('.item-card')).forEach(el => el.remove());
+      const addBtn = langB.querySelector('.add-btn');
+      state.languages.forEach((l, i) => {
+        const card = document.createElement('div'); card.className = 'item-card';
+        const rm = document.createElement('button'); rm.className = 'rm'; rm.textContent = '✕';
+        rm.onclick = () => { state.languages.splice(i, 1); renderLang(); };
+        card.appendChild(rm);
+        const r = document.createElement('div'); r.className = 'row2';
+        r.appendChild(field('Language', l.name, v => state.languages[i].name = v));
+        r.appendChild(field('Level', l.level, v => state.languages[i].level = v));
+        card.appendChild(r);
+        langB.insertBefore(card, addBtn);
+      });
+    }
+    const langAdd = document.createElement('button'); langAdd.className = 'add-btn'; langAdd.textContent = '+ Add language';
+    langAdd.onclick = () => { state.languages.push({ name: '', level: '' }); renderLang(); };
+    langB.appendChild(langAdd);
+    renderLang();
+    form.appendChild(langB);
+
+    // CONTACT
+    const contB = blockEl('Contact section');
+    contB.appendChild(field('Title', state.contact.title, v => state.contact.title = v));
+    contB.appendChild(field('Text', state.contact.text, v => state.contact.text = v, true));
+    form.appendChild(contB);
+
+    // FOOTER
+    const footB = blockEl('Footer');
+    footB.appendChild(field('Footer text', state.footer.text, v => state.footer.text = v));
+    form.appendChild(footB);
+  }
+
+  function utf8ToBase64(str){
+    return btoa(unescape(encodeURIComponent(str)));
+  }
+
+  async function saveChanges(){
+    const token = document.getElementById('ghToken').value.trim();
+    if (!token) { setStatus('Paste your GitHub token above first.', 'err'); return; }
+    const saveBtn = document.getElementById('saveBtn');
+    saveBtn.disabled = true;
+    setStatus('Saving…');
+    try {
+      // 1. get current file SHA (required by GitHub API for updates)
+      const getRes = await fetch(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${FILE_PATH}?ref=${BRANCH}`, {
+        headers: { Authorization: 'Bearer ' + token, Accept: 'application/vnd.github+json' }
+      });
+      if (!getRes.ok) throw new Error('Could not read current file (check token permissions). Status ' + getRes.status);
+      const getJson = await getRes.json();
+      const sha = getJson.sha;
+
+      // 2. push updated content
+      const content = utf8ToBase64(JSON.stringify(state, null, 2));
+      const putRes = await fetch(`https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${FILE_PATH}`, {
+        method: 'PUT',
+        headers: { Authorization: 'Bearer ' + token, Accept: 'application/vnd.github+json', 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          message: 'Update portfolio content via admin panel',
+          content: content,
+          sha: sha,
+          branch: BRANCH
+        })
+      });
+      if (!putRes.ok) {
+        const errJson = await putRes.json().catch(() => ({}));
+        throw new Error(errJson.message || ('Save failed. Status ' + putRes.status));
+      }
+      setStatus('Saved! Your live site will update within about a minute.', 'ok');
+    } catch (err) {
+      setStatus('Error: ' + err.message, 'err');
+    } finally {
+      saveBtn.disabled = false;
+    }
+  }
+</script>
+
+</body>
+</html>
